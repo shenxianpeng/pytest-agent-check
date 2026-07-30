@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/shenxianpeng/pytest-agent-eval/main/docs/logo.png" alt="pytest-agent-eval" width="200"/>
-</p>
-
 <h1 align="center">pytest-agent-eval</h1>
 
 <p align="center">
