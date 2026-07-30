@@ -1,5 +1,5 @@
 """
-Command-line interface for ``pytest-agent-eval``.
+Command-line interface for ``pytest-agent-check``.
 
 Usage::
 

@@ -149,7 +149,7 @@ class ExpectOutputResult:
         Assert that the output exceeds a semantic similarity threshold.
 
         Requires ``sentence-transformers`` (install with
-        ``pip install pytest-agent-eval[semantic]``).
+        ``pip install pytest-agent-check[semantic]``).
 
         Args:
             threshold: Minimum cosine similarity (0-1).

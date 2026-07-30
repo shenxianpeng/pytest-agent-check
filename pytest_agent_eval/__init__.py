@@ -1,5 +1,5 @@
 """
-pytest-agent-eval — A pytest plugin for evaluating and testing AI agents.
+pytest-agent-check — A pytest plugin for evaluating and testing AI agents.
 
 This plugin provides:
 - ``@agent_test`` decorator for marking agent evaluation tests
