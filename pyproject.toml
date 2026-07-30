@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "A pytest plugin for evaluating and testing AI agents — record, replay, and assert agent behavior"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = "MIT"
 keywords = ["pytest", "plugin", "agent", "AI", "evaluation", "testing", "LLM"]
 authors = [
     { name = "Xianpeng Shen", email = "shenxianpeng@example.com" },
@@ -17,7 +17,6 @@ authors = [
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Framework :: Pytest",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
