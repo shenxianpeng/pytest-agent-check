@@ -11,8 +11,8 @@
   <a href="https://pypi.org/project/pytest-agent-eval/">
     <img src="https://img.shields.io/pypi/pyversions/pytest-agent-eval" alt="Python versions">
   </a>
-  <a href="https://github.com/shenxianpeng/pytest-agent-eval/actions">
-    <img src="https://img.shields.io/github/actions/workflow/status/shenxianpeng/pytest-agent-eval/ci.yml" alt="CI">
+  <a href="https://github.com/shenxianpeng/pytest-agent-eval/actions/workflows/ci.yml">
+    <img src="https://github.com/shenxianpeng/pytest-agent-eval/actions/workflows/ci.yml/badge.svg" alt="CI">
   </a>
   <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT">
