@@ -1,0 +1,48 @@
+tests/test_smoke.py
+  s_6c6f1012e51a75::t_4026f3f3bf7dff 11,15-24,26-29,39
+  s_6c6f1012e51a75::t_155eb26847eed9 2,48,66
+pytest_agent_eval/cassette.py
+  s_6c6f1012e51a75::t_b9f371bbae709f 123,128
+  s_6c6f1012e51a75::t_6805bec2ead277 27-28,32,53-54,58,88-89,98,141-142,155,171-172
+tests/test_api.py
+  s_6c6f1012e51a75::t_fc70c513a7c420 8-9,11,15-19,28
+  s_6c6f1012e51a75::t_f1ee05eabae843 3-4
+examples/agent.py
+  s_6c6f1012e51a75::t_0affbebc4a19a5 15-16,27-28,34
+examples/test_support_agent.py
+  s_6c6f1012e51a75::t_8be81ff9c0360a 20-21
+pytest_agent_eval/__init__.py
+  s_6c6f1012e51a75::t_6c2f00cdd30738 15-17
+pytest_agent_eval/api.py
+  s_6c6f1012e51a75::t_3a8603a9f72eb9 23-24,42,60-61,72-73,109-110,124-125,133,148-149,158,170-171,181-182
+pytest_agent_eval/cli.py
+  s_6c6f1012e51a75::t_de2aaf9cf05cda 122-123
+pytest_agent_eval/comparator.py
+  s_6c6f1012e51a75::t_732debb855cf19 14,21-22
+pytest_agent_eval/models.py
+  s_6c6f1012e51a75::t_1c8501a9c16441 10,21-22,29,40-41,49,63-64,75,94-95,104,116-117,127,150-151
+pytest_agent_eval/plugin.py
+  s_6c6f1012e51a75::t_18674ed84a1132 12,74-75
+pytest_agent_eval/reporter.py
+  s_6c6f1012e51a75::t_b2a241cb9f1184 16
+tests/test_cassette.py
+  s_6c6f1012e51a75::t_e5187053fd4b8c 5
+tests/test_comparator.py
+  s_6c6f1012e51a75::t_a0fd5f0b0b3791 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "e12b7bff005610e8e795aaa562ee5e5e44088c3e",
+  "prompts": {},
+  "sessions": {
+    "s_6c6f1012e51a75": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "019fb421-cc93-78d3-bf4b-fbc66e274a66",
+        "model": "deepseek-v4-flash"
+      },
+      "human_author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}
