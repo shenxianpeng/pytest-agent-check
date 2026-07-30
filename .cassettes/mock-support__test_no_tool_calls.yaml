@@ -1,0 +1,10 @@
+agent_name: mock-support
+interactions:
+- input: Hello
+  metadata: {}
+  output: I'm not sure how to help with that.
+  timestamp: '2026-07-30T17:55:44.533958+00:00'
+  tool_calls: []
+metadata: {}
+recorded_at: '2026-07-30T17:55:44.534040+00:00'
+test_name: mock-support__test_no_tool_calls

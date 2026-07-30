@@ -1,0 +1,17 @@
+agent_name: support-agent
+interactions:
+- input: What's my account balance?
+  metadata: {}
+  output: Your current account balance is $1,250.00 USD.
+  timestamp: '2026-07-30T17:55:13.139494+00:00'
+  tool_calls:
+  - arguments:
+      account_id: ACT-001
+    duration_ms: null
+    name: get_account_balance
+    result:
+      balance: 1250.0
+      currency: USD
+metadata: {}
+recorded_at: '2026-07-30T17:55:13.139599+00:00'
+test_name: balance_check

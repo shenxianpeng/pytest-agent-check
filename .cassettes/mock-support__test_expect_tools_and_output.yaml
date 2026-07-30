@@ -1,0 +1,23 @@
+agent_name: mock-support
+interactions:
+- input: I want a refund
+  metadata: {}
+  output: Your refund of $50 has been processed. It will arrive in 3-5 business days.
+  timestamp: '2026-07-30T17:55:44.532931+00:00'
+  tool_calls:
+  - arguments:
+      order_id: '123'
+    duration_ms: null
+    name: lookup_order
+    result:
+      status: delivered
+  - arguments:
+      amount: 50
+      order_id: '123'
+    duration_ms: null
+    name: issue_refund
+    result:
+      refund_id: RF-001
+metadata: {}
+recorded_at: '2026-07-30T17:55:44.533010+00:00'
+test_name: mock-support__test_expect_tools_and_output

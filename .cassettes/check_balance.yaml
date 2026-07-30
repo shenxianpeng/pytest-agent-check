@@ -1,0 +1,16 @@
+agent_name: bank-agent
+interactions:
+- input: What is my balance?
+  metadata: {}
+  output: Your current balance is $250.00.
+  timestamp: '2026-07-30T17:55:44.515350+00:00'
+  tool_calls:
+  - arguments:
+      account_id: A-001
+    duration_ms: null
+    name: get_balance
+    result:
+      balance: 250.0
+metadata: {}
+recorded_at: '2026-07-30T17:55:44.515721+00:00'
+test_name: check_balance
