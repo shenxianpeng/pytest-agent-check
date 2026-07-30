@@ -1,14 +1,22 @@
 """Test the @agent_test decorator."""
 import pytest
-from pytest_agent_eval import agent_test, expect_tools, expect_output
+
+from pytest_agent_eval import agent_test, expect_output, expect_tools
 
 
 class MockAgent:
+    """A mock agent that handles balance inquiries."""
+
     def __call__(self, user_input: str) -> dict:
+        """Process a user message and return tool calls + output."""
         if "balance" in user_input.lower():
             return {
                 "tool_calls": [
-                    {"name": "get_balance", "arguments": {"account_id": "A-001"}, "result": {"balance": 250.0}},
+                    {
+                        "name": "get_balance",
+                        "arguments": {"account_id": "A-001"},
+                        "result": {"balance": 250.0},
+                    },
                 ],
                 "output": "Your current balance is $250.00.",
             }
@@ -17,6 +25,7 @@ class MockAgent:
 
 @pytest.fixture
 def agent():
+    """Provide a mock agent for testing."""
     return MockAgent()
 
 

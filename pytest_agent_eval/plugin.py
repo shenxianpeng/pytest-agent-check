@@ -7,13 +7,9 @@ This module is loaded automatically via the ``pytest11`` entry point in
 
 from __future__ import annotations
 
-import os
-from pathlib import Path
-
 import pytest
 
-from .cassette import CassetteManager, CassetteContext
-
+from .cassette import CassetteContext, CassetteManager
 
 # ── CLI options ───────────────────────────────────────────────
 
@@ -75,7 +71,8 @@ class _CassetteFixtures:
 
     @pytest.fixture
     def cassette(self, request: pytest.FixtureRequest) -> CassetteContext:
-        """Wrap an agent function with cassette recording/replay.
+        """
+        Wrap an agent function with cassette recording/replay.
 
         The returned :class:`~pytest_agent_eval.cassette.CassetteContext`
         exposes a :meth:`~CassetteContext.run` method that either records

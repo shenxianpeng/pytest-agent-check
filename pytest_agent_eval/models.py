@@ -7,11 +7,9 @@ to/from YAML / dict trivially.
 
 from __future__ import annotations
 
-import copy
-from dataclasses import dataclass, field, asdict
+from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from typing import Any
-
 
 # ──────────────────────────────────────────────────────────────
 #  Cassette / Interaction models
@@ -20,13 +18,15 @@ from typing import Any
 
 @dataclass
 class ToolCall:
-    """A single tool invocation made by an agent during an interaction.
+    """
+    A single tool invocation made by an agent during an interaction.
 
     Attributes:
         name: Tool name (e.g. ``"lookup_order"``).
         arguments: Dictionary of arguments passed to the tool.
         result: Raw result returned by the tool (any JSON-serialisable type).
         duration_ms: (optional) Wall-clock duration of the call in ms.
+
     """
 
     name: str = ""
@@ -37,7 +37,8 @@ class ToolCall:
 
 @dataclass
 class Interaction:
-    """A single turn of conversation between a user and an agent.
+    """
+    A single turn of conversation between a user and an agent.
 
     Attributes:
         input: The user message that triggered this interaction.
@@ -45,6 +46,7 @@ class Interaction:
         output: The final natural-language response from the agent.
         timestamp: ISO-8601 timestamp of when the interaction occurred.
         metadata: Free-form metadata (model name, latency, etc.).
+
     """
 
     input: str = ""
@@ -58,7 +60,8 @@ class Interaction:
 
 @dataclass
 class Cassette:
-    """A recorded "cassette" containing all interactions for one test.
+    """
+    A recorded "cassette" containing all interactions for one test.
 
     Analogous to a VCR.py cassette — it captures the full agent
     behaviour so it can be replayed later for deterministic testing.
@@ -69,6 +72,7 @@ class Cassette:
         interactions: Ordered list of recorded interactions.
         recorded_at: ISO-8601 timestamp of the recording.
         metadata: Free-form metadata.
+
     """
 
     agent_name: str = ""
@@ -87,7 +91,8 @@ class Cassette:
 
 @dataclass
 class ToolCallDiff:
-    """Diff descriptor for a single position in a tool-call sequence.
+    """
+    Diff descriptor for a single position in a tool-call sequence.
 
     Attributes:
         status: One of ``"unchanged"``, ``"added"``, ``"removed"``,
@@ -96,6 +101,7 @@ class ToolCallDiff:
         expected_arguments: Arguments from the baseline cassette.
         actual_arguments: Arguments from the current run.
         diff_details: Human-readable description of the change.
+
     """
 
     status: str = "unchanged"
@@ -107,7 +113,8 @@ class ToolCallDiff:
 
 @dataclass
 class ComparisonResult:
-    """Result of comparing a baseline cassette against a new run.
+    """
+    Result of comparing a baseline cassette against a new run.
 
     Attributes:
         test_name: Pytest node name.
@@ -117,6 +124,7 @@ class ComparisonResult:
         output_verdict: ``"PASS"`` / ``"FAIL"`` / ``"SKIP"`` for NL output.
         stability: Stability indicator like ``"3/3"`` when retries are used.
         error: Top-level error message if the comparison itself failed.
+
     """
 
     test_name: str = ""
@@ -139,7 +147,8 @@ def asdict_recursive(obj: Any) -> dict[str, Any]:
 
 
 def cassette_from_dict(data: dict[str, Any]) -> Cassette:
-    """Deserialise a dictionary back into a ``Cassette`` instance.
+    """
+    Deserialise a dictionary back into a ``Cassette`` instance.
 
     Handles nested ``Interaction`` and ``ToolCall`` objects.
     """

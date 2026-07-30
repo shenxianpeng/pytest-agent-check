@@ -12,9 +12,9 @@ This plugin provides:
 
 from __future__ import annotations
 
-from .api import agent_test, expect_tools, expect_output
-from .models import ToolCall, Interaction, Cassette, ComparisonResult, ToolCallDiff
-from .cassette import CassetteManager, CassetteContext
+from .api import agent_test, expect_output, expect_tools
+from .cassette import CassetteContext, CassetteManager
+from .models import Cassette, ComparisonResult, Interaction, ToolCall, ToolCallDiff
 
 __all__ = [
     "agent_test",

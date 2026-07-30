@@ -8,12 +8,12 @@ works offline without any API key.
 
 from __future__ import annotations
 
-import json
 from typing import Any
 
 
 class SupportAgent:
-    """A mock support agent that can process simple customer requests.
+    """
+    A mock support agent that can process simple customer requests.
 
     Real agents would connect to an LLM and external tools; this
     minimal version demonstrates the shape of the data that
@@ -24,12 +24,14 @@ class SupportAgent:
         self.name = name
 
     def run(self, user_input: str) -> dict[str, Any]:
-        """Process a user message and return tool calls + text output.
+        """
+        Process a user message and return tool calls + text output.
 
         Returns:
             A dict with:
             - ``tool_calls``: list of ``{"name", "arguments", "result"}``
             - ``output``: the final natural-language response.
+
         """
         text = user_input.lower()
 

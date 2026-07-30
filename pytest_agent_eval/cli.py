@@ -10,10 +10,8 @@ Usage::
 
 from __future__ import annotations
 
-import os
 import subprocess
 import sys
-from pathlib import Path
 
 # typer is optional — the CLI works without it (raw subprocess fallback).
 try:
@@ -121,7 +119,8 @@ if _has_typer:
             help="Extra arguments to pass to pytest (repeatable).",
         ),
     ) -> None:
-        """Re-record (update) baseline cassettes.
+        """
+        Re-record (update) baseline cassettes.
 
         Equivalent to ``agent-eval record`` — existing cassettes are
         overwritten with fresh recordings.

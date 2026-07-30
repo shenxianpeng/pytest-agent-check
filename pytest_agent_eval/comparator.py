@@ -11,14 +11,15 @@ from typing import Any
 
 from deepdiff import DeepDiff
 
-from .models import ComparisonResult, ToolCallDiff, Cassette
+from .models import Cassette, ComparisonResult, ToolCallDiff
 
 
 def compare_cassettes(
     baseline: Cassette,
     current: Cassette,
 ) -> ComparisonResult:
-    """Compare two cassettes and return a structured result.
+    """
+    Compare two cassettes and return a structured result.
 
     For MVP the comparison is limited to the **first** interaction of each
     cassette (most agent tests are single-turn).

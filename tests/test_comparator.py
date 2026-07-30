@@ -1,6 +1,6 @@
 """Unit tests for the comparator module."""
-from pytest_agent_eval.models import ToolCall, Cassette, Interaction
 from pytest_agent_eval.comparator import compare_cassettes
+from pytest_agent_eval.models import Cassette, Interaction, ToolCall
 
 
 def test_identical_cassettes():

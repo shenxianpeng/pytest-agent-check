@@ -16,9 +16,9 @@ Run with::
 """
 
 import pytest
-from examples.agent import SupportAgent
-from pytest_agent_eval import agent_test, expect_tools, expect_output
 
+from examples.agent import SupportAgent
+from pytest_agent_eval import agent_test, expect_output, expect_tools
 
 # ── Fixtures ──────────────────────────────────────────────────
 

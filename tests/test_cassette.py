@@ -1,14 +1,9 @@
 """Unit tests for the cassette manager and context."""
-import os
-import tempfile
-from pathlib import Path
 
 import pytest
-import yaml
 
-from pytest_agent_eval.cassette import CassetteManager, CassetteContext
+from pytest_agent_eval.cassette import CassetteContext, CassetteManager
 from pytest_agent_eval.models import Cassette, Interaction, ToolCall
-
 
 # ── CassetteManager ──────────────────────────────────────────
 

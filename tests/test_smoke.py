@@ -1,6 +1,6 @@
 """Quick smoke test for the pytest-agent-eval plugin."""
+
 import pytest
-from pathlib import Path
 
 # ── mock agent ────────────────────────────────────────────────
 
@@ -8,13 +8,25 @@ class MockAgent:
     """A fake agent that always calls the same tools."""
 
     def __call__(self, user_input: str) -> dict:
+        """Process a user message and return tool calls + output."""
         if "refund" in user_input.lower():
             return {
                 "tool_calls": [
-                    {"name": "lookup_order", "arguments": {"order_id": "123"}, "result": {"status": "delivered"}},
-                    {"name": "issue_refund", "arguments": {"order_id": "123", "amount": 50}, "result": {"refund_id": "RF-001"}},
+                    {
+                        "name": "lookup_order",
+                        "arguments": {"order_id": "123"},
+                        "result": {"status": "delivered"},
+                    },
+                    {
+                        "name": "issue_refund",
+                        "arguments": {"order_id": "123", "amount": 50},
+                        "result": {"refund_id": "RF-001"},
+                    },
                 ],
-                "output": "Your refund of $50 has been processed. It will arrive in 3-5 business days.",
+                "output": (
+                    "Your refund of $50 has been processed. "
+                    "It will arrive in 3-5 business days."
+                ),
             }
         return {
             "tool_calls": [],
@@ -24,6 +36,7 @@ class MockAgent:
 
 @pytest.fixture
 def agent():
+    """Provide a mock agent for testing."""
     return MockAgent()
 
 
@@ -32,7 +45,7 @@ def agent():
 @pytest.mark.agent_test(agent="mock-support")
 def test_expect_tools_and_output(agent, cassette):
     """Verify the core fluent API works end-to-end."""
-    from pytest_agent_eval import expect_tools, expect_output
+    from pytest_agent_eval import expect_output, expect_tools
 
     result = cassette.run(agent, "I want a refund", agent_name="mock-support")
 
@@ -50,7 +63,7 @@ def test_expect_tools_and_output(agent, cassette):
 @pytest.mark.agent_test(agent="mock-support")
 def test_no_tool_calls(agent, cassette):
     """A test that produces no tool calls should still work."""
-    from pytest_agent_eval import expect_tools, expect_output
+    from pytest_agent_eval import expect_output, expect_tools
 
     result = cassette.run(agent, "Hello", agent_name="mock-support")
 

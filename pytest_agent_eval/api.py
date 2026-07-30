@@ -6,11 +6,9 @@ This is what users ``from pytest_agent_eval import`` in their test files.
 
 from __future__ import annotations
 
-import functools
 from typing import Any, Callable
 
 import pytest
-
 
 # ──────────────────────────────────────────────────────────────
 #  agent_test decorator
@@ -22,7 +20,8 @@ def agent_test(
     agent: str,
     cassette: str | None = None,
 ) -> Callable[[Callable], Callable]:
-    """Mark a function as an agent evaluation test.
+    """
+    Mark a function as an agent evaluation test.
 
     This is a thin wrapper around ``@pytest.mark.agent_test`` that
     provides a cleaner user-facing syntax.
@@ -40,6 +39,7 @@ def agent_test(
         def test_refund_request(agent, cassette):
             result = cassette.run(agent, "I want a refund")
             expect_tools(result).called("lookup_order").then("issue_refund")
+
     """
 
     def decorator(func: Callable) -> Callable:
@@ -57,7 +57,8 @@ def agent_test(
 
 
 class ExpectToolsResult:
-    """Fluent assertion on a sequence of tool calls.
+    """
+    Fluent assertion on a sequence of tool calls.
 
     Constructed via :func:`expect_tools` — users should not instantiate
     this directly.
@@ -68,7 +69,8 @@ class ExpectToolsResult:
         self._index: int = 0
 
     def called(self, tool_name: str) -> ExpectToolsResult:
-        """Assert that the **next** tool call has *tool_name*.
+        """
+        Assert that the **next** tool call has *tool_name*.
 
         Returns ``self`` so calls can be chained with :meth:`then`.
         """
@@ -104,7 +106,8 @@ class ExpectToolsResult:
 
 
 class ExpectOutputResult:
-    """Fluent assertion on the natural-language output of an agent.
+    """
+    Fluent assertion on the natural-language output of an agent.
 
     Constructed via :func:`expect_output`.
     """
@@ -118,7 +121,8 @@ class ExpectOutputResult:
         return self._output
 
     def matches_intent(self, description: str) -> ExpectOutputResult:
-        """Assert the output is non-empty and plausibly matches an intent.
+        """
+        Assert the output is non-empty and plausibly matches an intent.
 
         In the MVP this is a basic non-emptiness check.  Future versions
         will use embedding similarity or an LLM-as-judge for semantic
@@ -126,6 +130,7 @@ class ExpectOutputResult:
 
         Args:
             description: Human-readable description of the expected intent.
+
         """
         if not self._output:
             raise AssertionError(
@@ -140,7 +145,8 @@ class ExpectOutputResult:
         threshold: float = 0.85,
         reference: str | None = None,
     ) -> ExpectOutputResult:
-        """Assert that the output exceeds a semantic similarity threshold.
+        """
+        Assert that the output exceeds a semantic similarity threshold.
 
         Requires ``sentence-transformers`` (install with
         ``pip install pytest-agent-eval[semantic]``).
@@ -149,6 +155,7 @@ class ExpectOutputResult:
             threshold: Minimum cosine similarity (0-1).
             reference: Reference text to compare against.  If ``None``,
                 the cassette's recorded output is used.
+
         """
         # Stub — full implementation requires the optional dependency.
         # For now we just accept any non-empty output.
@@ -160,7 +167,8 @@ class ExpectOutputResult:
 
 
 def expect_tools(result: dict[str, Any]) -> ExpectToolsResult:
-    """Start fluent assertion on the tool-call sequence of *result*.
+    """
+    Start fluent assertion on the tool-call sequence of *result*.
 
     Usage::
 
@@ -170,7 +178,8 @@ def expect_tools(result: dict[str, Any]) -> ExpectToolsResult:
 
 
 def expect_output(result: dict[str, Any]) -> ExpectOutputResult:
-    """Start fluent assertion on the natural-language output of *result*.
+    """
+    Start fluent assertion on the natural-language output of *result*.
 
     Usage::
 

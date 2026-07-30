@@ -9,7 +9,6 @@ fast — without incurring API costs.
 
 from __future__ import annotations
 
-import os
 from pathlib import Path
 from typing import Any, Callable
 
@@ -25,10 +24,12 @@ from .models import (
 
 
 class CassetteManager:
-    """Persists and loads cassettes from the filesystem.
+    """
+    Persists and loads cassettes from the filesystem.
 
     Args:
         cassette_dir: Directory where cassette YAML files are stored.
+
     """
 
     def __init__(self, cassette_dir: str | Path = ".cassettes") -> None:
@@ -49,10 +50,12 @@ class CassetteManager:
     # ── load / save ────────────────────────────────────────────
 
     def load(self, name: str) -> Cassette:
-        """Load and return a cassette from disk.
+        """
+        Load and return a cassette from disk.
 
         Raises:
             FileNotFoundError: If the cassette does not exist.
+
         """
         path = self._path(name)
         if not path.exists():
@@ -82,7 +85,8 @@ class CassetteManager:
 
 
 class CassetteContext:
-    """Per-test context that wraps an agent function with record or replay logic.
+    """
+    Per-test context that wraps an agent function with record or replay logic.
 
     Users obtain this via the ``cassette`` pytest fixture and typically
     do **not** instantiate it directly.
@@ -91,6 +95,7 @@ class CassetteContext:
         manager: The ``CassetteManager`` instance.
         name: Logical name of the cassette (usually the test node name).
         mode: ``"record"``, ``"replay"``, or ``"auto"``.
+
     """
 
     def __init__(
@@ -115,10 +120,12 @@ class CassetteContext:
 
     @property
     def name(self) -> str:
+        """Cassette name (usually the test node name)."""
         return self._name
 
     @property
     def mode(self) -> str:
+        """Current operation mode: ``"record"``, ``"replay"``, or ``"auto"``."""
         return self._mode
 
     # ── public API used inside tests ──────────────────────────
@@ -131,7 +138,8 @@ class CassetteContext:
         agent_name: str = "",
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Execute the agent or replay a previous interaction.
+        """
+        Execute the agent or replay a previous interaction.
 
         Args:
             agent_func: A callable that accepts a user message string and
@@ -144,6 +152,7 @@ class CassetteContext:
         Returns:
             A dict with ``tool_calls``, ``output``, ``input``, and
             ``_replayed`` (bool) keys.
+
         """
         if agent_name:
             self._agent_name = agent_name
@@ -159,7 +168,8 @@ class CassetteContext:
     # ── lifecycle called by the plugin fixture ────────────────
 
     def finish(self) -> None:
-        """Persist recorded interactions to disk.
+        """
+        Persist recorded interactions to disk.
 
         Called automatically by the ``cassette`` pytest fixture during
         test teardown.  Only writes when in recording mode.
