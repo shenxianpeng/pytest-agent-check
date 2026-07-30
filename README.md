@@ -1,15 +1,15 @@
-<h1 align="center">pytest-agent-eval</h1>
+<h1 align="center">pytest-agent-check</h1>
 
 <p align="center">
   <em>A pytest plugin for evaluating and testing AI agents — record, replay, and assert agent behaviour with confidence.</em>
 </p>
 
 <p align="center">
-  <a href="https://pypi.org/project/pytest-agent-eval/">
-    <img src="https://img.shields.io/pypi/v/pytest-agent-eval" alt="PyPI">
+  <a href="https://pypi.org/project/pytest-agent-check/">
+    <img src="https://img.shields.io/pypi/v/pytest-agent-check" alt="PyPI">
   </a>
-  <a href="https://pypi.org/project/pytest-agent-eval/">
-    <img src="https://img.shields.io/pypi/pyversions/pytest-agent-eval" alt="Python versions">
+  <a href="https://pypi.org/project/pytest-agent-check/">
+    <img src="https://img.shields.io/pypi/pyversions/pytest-agent-check" alt="Python versions">
   </a>
   <a href="https://github.com/shenxianpeng/pytest-agent-eval/actions/workflows/ci.yml">
     <img src="https://github.com/shenxianpeng/pytest-agent-eval/actions/workflows/ci.yml/badge.svg" alt="CI">
@@ -23,7 +23,7 @@
 
 ## Overview
 
-**pytest-agent-eval** brings the familiar **snapshot testing** and **VCR-like cassette** patterns to AI agent evaluation.
+**pytest-agent-check** brings the familiar **snapshot testing** and **VCR-like cassette** patterns to AI agent evaluation.
 
 If you've ever wished you could test your agent as confidently as you test your REST API — with deterministic assertions, offline replay, and a clear diff when something changes — this plugin is for you.
 
@@ -42,16 +42,16 @@ This plugin solves both problems:
 ## Installation
 
 ```bash
-pip install pytest-agent-eval
+pip install pytest-agent-check
 ```
 
 Optional extras:
 
 ```bash
-pip install pytest-agent-eval[semantic]   # sentence-transformers for semantic similarity
-pip install pytest-agent-eval[cli]        # typer-based `agent-eval` CLI
-pip install pytest-agent-eval[html]       # jinja2 for HTML reports
-pip install pytest-agent-eval[all]        # everything above
+pip install pytest-agent-check[semantic]   # sentence-transformers for semantic similarity
+pip install pytest-agent-check[cli]        # typer-based `agent-eval` CLI
+pip install pytest-agent-check[html]       # jinja2 for HTML reports
+pip install pytest-agent-check[all]        # everything above
 ```
 
 ### Requirements
@@ -105,7 +105,7 @@ This runs your **real agent**, captures all tool calls and outputs, and saves th
 ### 3. Run tests in replay mode
 
 ```bash
-# Requires the CLI extra: pip install pytest-agent-eval[cli]
+# Requires the CLI extra: pip install pytest-agent-check[cli]
 agent-eval run test_support_agent.py
 # ─ or ─
 pytest test_support_agent.py --cassette-mode=replay -v
@@ -215,7 +215,7 @@ In the MVP this is a non-emptiness check. Future releases will add:
 
 ## CLI Reference
 
-When ``typer`` is installed (``pip install pytest-agent-eval[cli]``):
+When ``typer`` is installed (``pip install pytest-agent-check[cli]``):
 
 ```bash
 agent-eval record [<test-path>]       # Record cassettes (real agent runs)
@@ -263,14 +263,14 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: ${{ matrix.python-version }}
-      - run: pip install pytest-agent-eval[cli]
+      - run: pip install pytest-agent-check[cli]
       - run: pytest tests/ --cassette-mode=replay -v
 ```
 
 To update baselines (e.g., after intentional agent changes):
 
 ```bash
-pip install pytest-agent-eval[cli]
+pip install pytest-agent-check[cli]
 agent-eval update tests/
 git add .cassettes/
 git commit -m "chore: update agent evaluation baselines"
@@ -281,7 +281,7 @@ git commit -m "chore: update agent evaluation baselines"
 ## Project Architecture
 
 ```
-pytest-agent-eval/
+pytest-agent-check/
 ├── pytest_agent_eval/
 │   ├── __init__.py     # Public API exports
 │   ├── api.py          # @agent_test, expect_tools, expect_output
@@ -322,7 +322,7 @@ pytest-agent-eval/
 
 ```bash
 git clone https://github.com/shenxianpeng/pytest-agent-eval.git
-cd pytest-agent-eval
+cd pytest-agent-check
 python -m venv venv && source venv/bin/activate
 pip install -e ".[dev]"
 pytest

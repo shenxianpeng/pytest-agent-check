@@ -18,7 +18,7 @@ def pytest_addoption(parser: pytest.Parser) -> None:
     """Register ``--cassette-dir`` and ``--cassette-mode`` flags."""
     group = parser.getgroup(
         "agent-eval",
-        "pytest-agent-eval: evaluate & test AI agents",
+        "pytest-agent-check: evaluate & test AI agents",
     )
     group.addoption(
         "--cassette-dir",

@@ -1,7 +1,7 @@
 """
 Example: agent evaluation tests for a support agent.
 
-This demonstrates the primary usage patterns of ``pytest-agent-eval``.
+This demonstrates the primary usage patterns of ``pytest-agent-check``.
 
 Run with::
 

@@ -1,4 +1,4 @@
-"""Quick smoke test for the pytest-agent-eval plugin."""
+"""Quick smoke test for the pytest-agent-check plugin."""
 
 import pytest
 

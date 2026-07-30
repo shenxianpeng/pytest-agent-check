@@ -17,7 +17,7 @@ class SupportAgent:
 
     Real agents would connect to an LLM and external tools; this
     minimal version demonstrates the shape of the data that
-    ``pytest-agent-eval`` expects.
+    ``pytest-agent-check`` expects.
     """
 
     def __init__(self, name: str = "support-agent") -> None:
