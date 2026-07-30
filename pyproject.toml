@@ -42,9 +42,9 @@ cli = ["typer>=0.9"]
 all = ["pytest-agent-check[semantic,html,cli]"]
 
 [project.urls]
-Homepage = "https://github.com/shenxianpeng/pytest-agent-eval"
-Repository = "https://github.com/shenxianpeng/pytest-agent-eval"
-Issues = "https://github.com/shenxianpeng/pytest-agent-eval/issues"
+Homepage = "https://github.com/shenxianpeng/pytest-agent-check"
+Repository = "https://github.com/shenxianpeng/pytest-agent-check"
+Issues = "https://github.com/shenxianpeng/pytest-agent-check/issues"
 
 [project.entry-points.pytest11]
 pytest-agent-check = "pytest_agent_eval.plugin"
