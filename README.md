@@ -109,6 +109,7 @@ This runs your **real agent**, captures all tool calls and outputs, and saves th
 ### 3. Run tests in replay mode
 
 ```bash
+# Requires the CLI extra: pip install pytest-agent-eval[cli]
 agent-eval run test_support_agent.py
 # ─ or ─
 pytest test_support_agent.py --cassette-mode=replay -v
@@ -256,12 +257,15 @@ on: [pull_request]
 jobs:
   agent-tests:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-      - run: pip install pytest-agent-eval
+          python-version: ${{ matrix.python-version }}
+      - run: pip install pytest-agent-eval[cli]
       - run: pytest tests/ --cassette-mode=replay -v
 ```
 
