@@ -53,7 +53,6 @@ Optional extras:
 
 ```bash
 pip install pytest-agent-eval[semantic]   # sentence-transformers for semantic similarity
-pip install pytest-agent-eval[cli]        # typer-based `agent-eval` CLI
 pip install pytest-agent-eval[html]       # jinja2 for HTML reports
 pip install pytest-agent-eval[all]        # everything above
 ```
@@ -99,8 +98,6 @@ def test_refund_request(agent, cassette):
 ### 2. Record cassettes (first run)
 
 ```bash
-agent-eval record test_support_agent.py
-# ─ or ─
 pytest test_support_agent.py --cassette-mode=record -v
 ```
 
@@ -109,8 +106,6 @@ This runs your **real agent**, captures all tool calls and outputs, and saves th
 ### 3. Run tests in replay mode
 
 ```bash
-agent-eval run test_support_agent.py
-# ─ or ─
 pytest test_support_agent.py --cassette-mode=replay -v
 ```
 
@@ -119,7 +114,7 @@ Now tests run **offline** — no API calls, no LLM latency, no cost. The recorde
 ### 4. Update baselines when behaviour changes
 
 ```bash
-agent-eval update test_support_agent.py
+pytest test_support_agent.py --cassette-mode=record -v
 ```
 
 Re-records all cassettes. Commit the updated YAML files alongside your code changes.
@@ -216,23 +211,6 @@ In the MVP this is a non-emptiness check. Future releases will add:
 
 ---
 
-## CLI Reference
-
-When ``typer`` is installed (``pip install pytest-agent-eval[cli]``):
-
-```bash
-agent-eval record [<test-path>]       # Record cassettes (real agent runs)
-agent-eval run    [<test-path>]       # Replay from cassettes (offline)
-agent-eval update [<test-path>]       # Re-record (update) baselines
-```
-
-Options:
-- ``--cassette-dir`` / ``-d`` — Cassette directory (default: ``.cassettes``)
-- ``--verbose`` / ``--quiet`` — Pytest verbosity
-- ``--pytest-args`` — Extra pytest arguments (repeatable, e.g. ``-pytest -x -pytest -k test_refund``)
-
----
-
 ## Configuration
 
 All configuration is via pytest command-line flags:
@@ -241,7 +219,7 @@ All configuration is via pytest command-line flags:
 |--------------------|---------------|--------------------------------------------------|
 | `--cassette-dir`   | `.cassettes`  | Directory for cassette YAML files                |
 | `--cassette-mode`  | `auto`        | `record`, `replay`, or `auto`                    |
-| `--agent-eval-report` | off        | Print structured eval report after test run      |
+| `--agent-eval-report` | off        | Print structured eval report after test run       |
 
 ---
 
@@ -268,8 +246,7 @@ jobs:
 To update baselines (e.g., after intentional agent changes):
 
 ```bash
-pip install pytest-agent-eval[cli]
-agent-eval update tests/
+pytest tests/ --cassette-mode=record -v
 git add .cassettes/
 git commit -m "chore: update agent evaluation baselines"
 ```
@@ -287,7 +264,7 @@ pytest-agent-eval/
 │   ├── comparator.py   # Tool-call sequence comparison (deepdiff)
 │   ├── plugin.py       # Pytest plugin (markers, options, fixtures)
 │   ├── reporter.py     # Terminal output with rich formatting
-│   ├── cli.py          # agent-eval CLI (record/run/update)
+│   ├── (CLI removed in v0.1.0)
 │   └── models.py       # Data models (ToolCall, Interaction, Cassette, etc.)
 ├── tests/              # Unit and integration tests
 ├── examples/           # Runnable example tests
@@ -305,7 +282,7 @@ pytest-agent-eval/
 |       | ✅ Cassette record/replay (YAML-based)                       |
 |       | ✅ Tool-call diff comparison (deepdiff)                      |
 |       | ✅ Terminal reporter (rich)                                  |
-|       | ✅ CLI (agent-eval record/run/update)                        |
+|       | ✅ Pytest flags (`--cassette-mode record/replay/auto`)       |
 | Next  | 🔲 Semantic similarity (`expect_output().semantic_similarity()`) |
 |       | 🔲 LLM-as-judge evaluation (`expect_output().judged_by()`)   |
 |       | 🔲 Multi-turn interaction support                            |
@@ -332,7 +309,7 @@ pytest
 pytest tests/ -v                     # unit tests only
 pytest examples/ --cassette-mode=record  # integration tests (record)
 pytest examples/ --cassette-mode=replay  # integration tests (replay)
-agent-eval run tests/                # via CLI
+pytest tests/ --cassette-mode=replay -v    # all tests via pytest
 ```
 
 ---

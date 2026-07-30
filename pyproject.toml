@@ -37,8 +37,7 @@ dependencies = [
 [project.optional-dependencies]
 semantic = ["sentence-transformers>=2.2"]
 html = ["jinja2>=3.0"]
-cli = ["typer>=0.9"]
-all = ["pytest-agent-eval[semantic,html,cli]"]
+all = ["pytest-agent-eval[semantic,html]"]
 
 [project.urls]
 Homepage = "https://github.com/shenxianpeng/pytest-agent-eval"
@@ -47,9 +46,6 @@ Issues = "https://github.com/shenxianpeng/pytest-agent-eval/issues"
 
 [project.entry-points.pytest11]
 pytest-agent-eval = "pytest_agent_eval.plugin"
-
-[project.scripts]
-agent-eval = "pytest_agent_eval.cli:app"
 
 [tool.setuptools_scm]
 version_scheme = "no-guess-dev"
