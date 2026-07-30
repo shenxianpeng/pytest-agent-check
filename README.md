@@ -11,8 +11,8 @@
   <a href="https://pypi.org/project/pytest-agent-check/">
     <img src="https://img.shields.io/pypi/pyversions/pytest-agent-check" alt="Python versions">
   </a>
-  <a href="https://github.com/shenxianpeng/pytest-agent-eval/actions/workflows/ci.yml">
-    <img src="https://github.com/shenxianpeng/pytest-agent-eval/actions/workflows/ci.yml/badge.svg" alt="CI">
+  <a href="https://github.com/shenxianpeng/pytest-agent-check/actions/workflows/ci.yml">
+    <img src="https://github.com/shenxianpeng/pytest-agent-check/actions/workflows/ci.yml/badge.svg" alt="CI">
   </a>
   <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT">
@@ -321,7 +321,7 @@ pytest-agent-check/
 ## Development
 
 ```bash
-git clone https://github.com/shenxianpeng/pytest-agent-eval.git
+git clone https://github.com/shenxianpeng/pytest-agent-check.git
 cd pytest-agent-check
 python -m venv venv && source venv/bin/activate
 pip install -e ".[dev]"
@@ -347,6 +347,6 @@ MIT — see [LICENSE](LICENSE).
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or pull request on [GitHub](https://github.com/shenxianpeng/pytest-agent-eval).
+Contributions are welcome! Please open an issue or pull request on [GitHub](https://github.com/shenxianpeng/pytest-agent-check).
 
 When adding features, include tests and update the documentation. Every PR should pass `pytest tests/ --cassette-mode=replay`.
