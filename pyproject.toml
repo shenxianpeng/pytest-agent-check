@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=64", "wheel"]
+requires = ["setuptools>=64", "wheel", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "pytest-agent-eval"
-version = "0.1.0"
+dynamic = ["version"]
 description = "A pytest plugin for evaluating and testing AI agents — record, replay, and assert agent behavior"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -50,6 +50,11 @@ pytest-agent-eval = "pytest_agent_eval.plugin"
 
 [project.scripts]
 agent-eval = "pytest_agent_eval.cli:app"
+
+[tool.setuptools_scm]
+version_scheme = "no-guess-dev"
+local_scheme = "no-local-version"
+fallback_version = "0.0.0"
 
 [tool.setuptools.packages.find]
 include = ["pytest_agent_eval*"]
