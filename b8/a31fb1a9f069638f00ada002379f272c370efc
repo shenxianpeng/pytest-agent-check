@@ -1,0 +1,25 @@
+.gitignore
+  s_6c6f1012e51a75::t_941f458cd67fb1 12-14
+README.md
+  s_6c6f1012e51a75::t_03e3c980682f78 112,260-262,267-268
+.github/workflows/ci.yml
+  s_6c6f1012e51a75::t_05ededd01cfe37 67-68
+pytest_agent_eval/cli.py
+  s_6c6f1012e51a75::t_dc9d0980aad830 152
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "b8a31fb1a9f069638f00ada002379f272c370efc",
+  "prompts": {},
+  "sessions": {
+    "s_6c6f1012e51a75": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "019fb421-cc93-78d3-bf4b-fbc66e274a66",
+        "model": "deepseek-v4-flash"
+      },
+      "human_author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}
