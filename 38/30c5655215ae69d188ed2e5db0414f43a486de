@@ -1,0 +1,37 @@
+.cassettes/unknown_request.yaml
+  s_6c6f1012e51a75::t_0a228fa0cb12c0 1-10
+.cassettes/bank-agent__test_check_balance_auto_cassette.yaml
+  s_6c6f1012e51a75::t_0a228fa0cb12c0 1-5,7-14,16
+  s_6c6f1012e51a75::t_e5d3888772e9d3 6,15
+.cassettes/refund_flow.yaml
+  s_6c6f1012e51a75::t_0a228fa0cb12c0 1-40
+.cassettes/balance_check.yaml
+  s_6c6f1012e51a75::t_0a228fa0cb12c0 1-17
+.cassettes/mock-support__test_no_tool_calls.yaml
+  s_6c6f1012e51a75::t_e5d3888772e9d3 6,9
+  s_6c6f1012e51a75::t_0a228fa0cb12c0 1-5,7-8,10
+.cassettes/mock-support__test_expect_tools_and_output.yaml
+  s_6c6f1012e51a75::t_e5d3888772e9d3 6,22
+  s_6c6f1012e51a75::t_0a228fa0cb12c0 1-5,7-21,23
+.cassettes/order_status.yaml
+  s_6c6f1012e51a75::t_0a228fa0cb12c0 1-21
+.cassettes/check_balance.yaml
+  s_6c6f1012e51a75::t_0a228fa0cb12c0 1-5,7-14,16
+  s_6c6f1012e51a75::t_e5d3888772e9d3 6,15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "3830c5655215ae69d188ed2e5db0414f43a486de",
+  "prompts": {},
+  "sessions": {
+    "s_6c6f1012e51a75": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "019fb421-cc93-78d3-bf4b-fbc66e274a66",
+        "model": "deepseek-v4-flash"
+      },
+      "human_author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}
