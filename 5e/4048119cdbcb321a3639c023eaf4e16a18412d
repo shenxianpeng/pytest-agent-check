@@ -1,0 +1,19 @@
+.github/workflows/publish-pypi.yml
+  s_6c6f1012e51a75::t_dee16d9d5747e9 13,15-16,28-29,39-41,45
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "5e4048119cdbcb321a3639c023eaf4e16a18412d",
+  "prompts": {},
+  "sessions": {
+    "s_6c6f1012e51a75": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "019fb421-cc93-78d3-bf4b-fbc66e274a66",
+        "model": "deepseek-v4-flash"
+      },
+      "human_author": "shenxianpeng <xianpeng.shen@gmail.com>"
+    }
+  }
+}
