@@ -256,12 +256,17 @@ on: [pull_request]
 jobs:
   agent-tests:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7.0.1
         with:
-          python-version: "3.12"
-      - run: pip install pytest-agent-eval
+          fetch-depth: 0  # needed for setuptools-scm
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install pytest-agent-eval[cli]
       - run: pytest tests/ --cassette-mode=replay -v
 ```
 
