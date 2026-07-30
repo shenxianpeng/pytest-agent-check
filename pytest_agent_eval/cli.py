@@ -149,8 +149,7 @@ else:
             "Install typer for a richer CLI:  pip install typer\n"
         )
 
-    # Placeholder so `from .cli import app` doesn't crash
-    app = typer if False else None  # type: ignore
+    app = None  # fallback when typer is not installed
 
 
 # ── direct invocation ───────────────────────────────────────
