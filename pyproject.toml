@@ -1,0 +1,75 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pytest-agent-eval"
+version = "0.1.0"
+description = "A pytest plugin for evaluating and testing AI agents — record, replay, and assert agent behavior"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["pytest", "plugin", "agent", "AI", "evaluation", "testing", "LLM"]
+authors = [
+    { name = "Xianpeng Shen", email = "shenxianpeng@example.com" },
+]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Framework :: Pytest",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "pytest>=8.0",
+    "pyyaml>=6.0",
+    "deepdiff>=7.0",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+semantic = ["sentence-transformers>=2.2"]
+html = ["jinja2>=3.0"]
+cli = ["typer>=0.9"]
+all = ["pytest-agent-eval[semantic,html,cli]"]
+
+[project.urls]
+Homepage = "https://github.com/shenxianpeng/pytest-agent-eval"
+Repository = "https://github.com/shenxianpeng/pytest-agent-eval"
+Issues = "https://github.com/shenxianpeng/pytest-agent-eval/issues"
+
+[project.entry-points.pytest11]
+pytest-agent-eval = "pytest_agent_eval.plugin"
+
+[project.scripts]
+agent-eval = "pytest_agent_eval.cli:app"
+
+[tool.setuptools.packages.find]
+include = ["pytest_agent_eval*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "agent_test(agent, cassette): mark test as an agent evaluation test",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "D"]
+ignore = ["D100", "D104", "D107", "D203", "D212"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = false
+ignore_missing_imports = true

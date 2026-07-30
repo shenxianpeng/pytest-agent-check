@@ -1,0 +1,10 @@
+agent_name: support-agent
+interactions:
+- input: Sing me a song
+  metadata: {}
+  output: I'm sorry, I couldn't understand your request. Please try rephrasing.
+  timestamp: '2026-07-30T17:55:13.141367+00:00'
+  tool_calls: []
+metadata: {}
+recorded_at: '2026-07-30T17:55:13.141458+00:00'
+test_name: unknown_request

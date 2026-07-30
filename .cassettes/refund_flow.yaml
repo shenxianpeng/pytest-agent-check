@@ -1,0 +1,40 @@
+agent_name: support-agent
+interactions:
+- input: I want a refund for my order ORD-001
+  metadata: {}
+  output: 'Your refund of $49.99 for order ORD-001 has been approved (refund ID: RF-001).
+    The amount will be returned to your original payment method within 3-5 business
+    days.'
+  timestamp: '2026-07-30T17:55:13.137690+00:00'
+  tool_calls:
+  - arguments:
+      order_id: ORD-001
+    duration_ms: null
+    name: lookup_order
+    result:
+      amount: 49.99
+      items:
+      - Wireless Headphones
+      order_id: ORD-001
+      status: delivered
+  - arguments:
+      order_id: ORD-001
+    duration_ms: null
+    name: check_refund_eligibility
+    result:
+      eligible: true
+      reason: Within 30-day return window
+      refund_amount: 49.99
+  - arguments:
+      amount: 49.99
+      method: original_payment
+      order_id: ORD-001
+    duration_ms: null
+    name: issue_refund
+    result:
+      expected_arrival: 3-5 business days
+      refund_id: RF-001
+      status: approved
+metadata: {}
+recorded_at: '2026-07-30T17:55:13.137966+00:00'
+test_name: refund_flow
