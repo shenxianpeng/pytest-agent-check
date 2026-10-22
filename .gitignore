@@ -24,3 +24,9 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# Coverage
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml

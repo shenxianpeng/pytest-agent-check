@@ -39,6 +39,7 @@ dependencies = [
 semantic = ["sentence-transformers>=2.2"]
 html = ["jinja2>=3.0"]
 cli = ["typer>=0.9"]
+test = ["pytest-cov>=7.0"]
 all = ["pytest-agent-check[semantic,html,cli]"]
 
 [project.urls]
@@ -78,3 +79,15 @@ ignore = ["D100", "D104", "D107", "D203", "D212"]
 python_version = "3.10"
 strict = false
 ignore_missing_imports = true
+
+[tool.coverage.run]
+source = ["pytest_agent_eval"]
+branch = true
+# The plugin is imported through the ``pytest11`` entry point before pytest-cov
+# starts measuring, so its import-time code is only seen in the fresh
+# interpreters started by ``pytester.runpytest_subprocess`` in tests/test_plugin.py.
+patch = ["subprocess"]
+
+[tool.coverage.report]
+fail_under = 100
+show_missing = true

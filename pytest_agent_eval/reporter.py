@@ -111,7 +111,9 @@ def _render_diff_details(result: ComparisonResult) -> str:
                 lines.append(f"       Old args: {_fmt(d.expected_arguments)}")
             if d.actual_arguments:
                 lines.append(f"       New args: {_fmt(d.actual_arguments)}")
-        elif d.status == "changed_args":
+        # The dict lookup above already raised KeyError for any other status,
+        # so this ``elif`` can never be false.
+        elif d.status == "changed_args":  # pragma: no branch
             lines.append(f"       Baseline: {_fmt(d.expected_arguments)}")
             lines.append(f"       Current:  {_fmt(d.actual_arguments)}")
             if d.diff_details:
