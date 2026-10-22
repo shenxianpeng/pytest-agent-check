@@ -1,6 +1,7 @@
 """Tests for the ``agent-eval`` command-line interface."""
 
 import importlib.util
+import re
 import runpy
 import sys
 from types import SimpleNamespace
@@ -13,6 +14,13 @@ from pytest_agent_eval import cli
 runner = CliRunner()
 
 COMMANDS = [("record", "record"), ("run", "replay"), ("update", "record")]
+
+_ANSI_ESCAPE = re.compile(r"\x1b\[[0-9;?]*[A-Za-z]")
+
+
+def _plain(text: str) -> str:
+    """Strip ANSI escape codes; typer colourises help output when it detects CI."""
+    return _ANSI_ESCAPE.sub("", text)
 
 
 @pytest.fixture
@@ -56,16 +64,18 @@ def test_help_lists_all_commands():
     """``--help`` should exit cleanly and list the three sub-commands."""
     result = runner.invoke(cli.app, ["--help"])
     assert result.exit_code == 0
-    assert "Evaluate and test AI agents with pytest." in result.output
+    output = _plain(result.output)
+    assert "Evaluate and test AI agents with pytest." in output
     for name, _ in COMMANDS:
-        assert name in result.output
+        assert name in output
 
 
 def test_no_arguments_shows_help():
     """Invoking without a sub-command prints usage instead of doing nothing."""
     result = runner.invoke(cli.app, [])
-    assert "Usage" in result.output
-    assert "record" in result.output
+    output = _plain(result.output)
+    assert "Usage" in output
+    assert "record" in output
 
 
 @pytest.mark.parametrize("command, mode", COMMANDS)
@@ -93,9 +103,10 @@ def test_command_help_documents_options():
     """Per-command help should mention the cassette directory and pytest passthrough."""
     result = runner.invoke(cli.app, ["record", "--help"])
     assert result.exit_code == 0
-    assert "--cassette-dir" in result.output
-    assert "--pytest-args" in result.output
-    assert "--verbose" in result.output and "--quiet" in result.output
+    output = _plain(result.output)
+    assert "--cassette-dir" in output
+    assert "--pytest-args" in output
+    assert "--verbose" in output and "--quiet" in output
 
 
 # ── fallback without typer ───────────────────────────────────
@@ -133,7 +144,7 @@ def test_main_entry_point_runs_app(monkeypatch, capsys):
     with pytest.raises(SystemExit) as excinfo:
         runpy.run_path(cli.__file__, run_name="__main__")
     assert excinfo.value.code == 0
-    out = capsys.readouterr().out
+    out = _plain(capsys.readouterr().out)
     assert "Usage" in out
     for name, _ in COMMANDS:
         assert name in out
