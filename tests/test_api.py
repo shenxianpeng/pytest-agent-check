@@ -103,3 +103,60 @@ def test_expect_output_raises_on_empty():
     from pytest_agent_eval import expect_output
     with pytest.raises(AssertionError, match="non-empty"):
         expect_output({"output": ""}).matches_intent("something")
+
+
+def test_expect_tools_without_tool_calls_key():
+    """A result without ``tool_calls`` behaves like an empty sequence."""
+    from pytest_agent_eval import expect_tools
+    et = expect_tools({})
+    assert et.total == 0
+    with pytest.raises(AssertionError, match=r"only 0 tool call\(s\)"):
+        et.called("anything")
+
+
+def test_expect_output_text_property():
+    """``.text`` exposes the raw output, defaulting to an empty string."""
+    from pytest_agent_eval import expect_output
+    assert expect_output({"output": "hello"}).text == "hello"
+    assert expect_output({}).text == ""
+
+
+def test_matches_intent_returns_self_for_chaining():
+    """matches_intent should return the same object so checks can be chained."""
+    from pytest_agent_eval import expect_output
+    eo = expect_output({"output": "Refund approved."})
+    assert eo.matches_intent("confirms refund") is eo
+
+
+def test_semantic_similarity_raises_on_empty():
+    """semantic_similarity should raise on empty output."""
+    from pytest_agent_eval import expect_output
+    with pytest.raises(AssertionError, match="semantic similarity"):
+        expect_output({"output": ""}).semantic_similarity()
+
+
+def test_semantic_similarity_accepts_non_empty_output():
+    """In the MVP any non-empty output passes, regardless of threshold or reference."""
+    from pytest_agent_eval import expect_output
+    eo = expect_output({"output": "Your balance is $250."})
+    assert eo.semantic_similarity(threshold=0.99, reference="balance is 250") is eo
+    assert eo.semantic_similarity() is eo
+
+
+def test_agent_test_decorator_applies_marker():
+    """The decorator should attach an ``agent_test`` marker with only the given kwargs."""
+
+    @agent_test(agent="bank-agent")
+    def without_cassette(agent, cassette):
+        pass
+
+    @agent_test(agent="bank-agent", cassette="explicit")
+    def with_cassette(agent, cassette):
+        pass
+
+    (marker,) = without_cassette.pytestmark
+    assert marker.name == "agent_test"
+    assert marker.kwargs == {"agent": "bank-agent"}
+
+    (marker,) = with_cassette.pytestmark
+    assert marker.kwargs == {"agent": "bank-agent", "cassette": "explicit"}

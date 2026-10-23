@@ -47,11 +47,11 @@ jobs:
       - name: Install package
         run: |
           python -m pip install --upgrade pip
-          pip install .[cli]
+          pip install -e ".[cli,test]"
 
-      - name: Run tests (replay mode — offline, deterministic)
+      - name: Run tests (replay mode — offline, deterministic) with 100% coverage gate
         run: |
-          python -m pytest tests/ examples/ -v --cassette-mode=replay
+          python -m pytest tests/ examples/ -v --cassette-mode=replay --cov --cov-report=term-missing
 
       - name: Verify CLI works
         run: |
